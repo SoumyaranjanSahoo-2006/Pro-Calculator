@@ -17,6 +17,11 @@ It is designed to work smoothly on desktop and Android devices and can be instal
 
 ---
 
+## 🚀 Live Demo
+
+https://soumyaranjansahoo-2006.github.io/Pro-Calculator/
+
+
 ## 🛠️ Tech Stack
 
 - HTML5  
@@ -76,7 +81,8 @@ This project can be deployed easily using **Netlify** or **GitHub Pages**.
 
 ## 👨‍💻 Author
 
-**Soumyaranjan Sahoo**
+**Soumyaranjan Sahoo** <br>
+B.Tech CSE Student
 
 ---
 
