@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Normal Calculator - Pro Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="./assets/icons/icon-192.png">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar blue-mode" id="navbar">
+        <div class="navbar-title">
+            <i class="fas fa-calculator"></i>
+            <span>Normal Calculator</span>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+<div class="sidebar blue-bg" id="sidebar">
+    <div class="sidebar-header">
+        <h3><i class="fas fa-store-alt"></i> Pro Tools</h3>
+    </div>
+    <ul class="sidebar-menu">
+        <li class="sidebar-item">
+            <a href="index.html" class="sidebar-link home" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="normal-calculator.html" class="sidebar-link normal active" data-page="normal">
+                <i class="fas fa-calculator"></i>
+                <span>Normal Calculator</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="grocery-calculator.html" class="sidebar-link grocery" data-page="grocery">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Grocery Calculator</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link converter" data-page="converter">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Unit Converter</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link help" data-page="help">
+                <i class="fas fa-question-circle"></i>
+                <span>Help & Support</span>
+            </a>
+        </li>
+    </ul>
+</div>
+    <!-- Main Container -->
+    <div class="container">
+        <div class="calculator-container">
+            <!-- Normal Calculator -->
+            <div class="normal-calculator">
+                <div class="calculator-display">
+                    <div class="calculation" id="calculationDisplay">0</div>
+                    <div class="result" id="resultDisplay">0</div>
+                </div>
+                <div class="calculator-buttons">
+                    <!-- Row 1 -->
+                    <button class="calc-btn clear" data-action="clear">C</button>
+                    <button class="calc-btn clear" data-action="clearEntry">CE</button>
+                    <button class="calc-btn backspace" data-action="backspace">
+                        <i class="fas fa-backspace"></i>
+                    </button>
+                    <button class="calc-btn operator" data-action="divide">÷</button>
+                    
+                    <!-- Row 2 -->
+                    <button class="calc-btn number" data-number="7">7</button>
+                    <button class="calc-btn number" data-number="8">8</button>
+                    <button class="calc-btn number" data-number="9">9</button>
+                    <button class="calc-btn operator" data-action="multiply">×</button>
+                    
+                    <!-- Row 3 -->
+                    <button class="calc-btn number" data-number="4">4</button>
+                    <button class="calc-btn number" data-number="5">5</button>
+                    <button class="calc-btn number" data-number="6">6</button>
+                    <button class="calc-btn operator" data-action="subtract">−</button>
+                    
+                    <!-- Row 4 -->
+                    <button class="calc-btn number" data-number="1">1</button>
+                    <button class="calc-btn number" data-number="2">2</button>
+                    <button class="calc-btn number" data-number="3">3</button>
+                    <button class="calc-btn operator" data-action="add">+</button>
+                    
+                    <!-- Row 5 -->
+                    <button class="calc-btn number zero" data-number="0">0</button>
+                    <button class="calc-btn number" data-action="decimal">.</button>
+                    <button class="calc-btn function" data-action="percentage">%</button>
+                    <button class="calc-btn function" data-action="plusMinus">±</button>
+                    
+                    <!-- Row 6 -->
+                    <button class="calc-btn equals" data-action="equals" style="grid-column: span 2; grid-row: span 1;">=</button>
+                    <button class="calc-btn function" data-action="square">x²</button>
+                    <button class="calc-btn function" data-action="sqrt">√</button>
+                </div>
+                
+                <div class="footer">
+                    Created by Soumyaranjan Sahoo
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/normal-calculator.js"></script>
+</body>
+</html>

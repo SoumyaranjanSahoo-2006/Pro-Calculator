@@ -1,0 +1,20 @@
+{
+  "name": "Pro Calculator",
+  "short_name": "Pro Calculator",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#2196F3",
+  "theme_color": "#1976D2",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

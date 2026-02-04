@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Pro Calculator </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="icon" type="image/png" href="./assets/icons/icon-192.png">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#1976D2">
+
+
+</head>
+<body>
+    <!-- SPLASH SCREEN -->
+  <div id="splash">
+    <img src="./assets/images/splash.png" alt="Splash Image">
+  </div>
+
+   <div id="app" style="display:none;">
+         <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-title">
+            <i class="fas fa-calculator"></i>
+            <span id="appTitle">Pro Calculator</span>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-store-alt"></i> Pro Tools</h3>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="sidebar-item">
+                <a href="index.html" class="sidebar-link home active" data-page="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="normal-calculator.html" class="sidebar-link normal" data-page="normal">
+                    <i class="fas fa-calculator"></i>
+                    <span>Normal Calculator</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="grocery-calculator.html" class="sidebar-link grocery" data-page="grocery">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Grocery Calculator</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link converter" data-page="converter">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Unit Converter</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link help" data-page="help">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Help & Support</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="calculator-container">
+            <!-- Home Screen -->
+            <div class="home-screen">
+                <div class="app-grid">
+                    <div class="app-item" onclick="window.location.href='normal-calculator.html'">
+                        <div class="app-icon blue">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="app-name">Normal Calculator</div>
+                    </div>
+                    
+                    <div class="app-item" onclick="window.location.href='grocery-calculator.html'">
+                        <div class="app-icon green">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="app-name">Grocery Calculator</div>
+                    </div>
+                    
+                    <div class="app-item" onclick="showComingSoon('Unit Converter')">
+                        <div class="app-icon orange">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="app-name">Unit Converter</div>
+                    </div>
+                    
+                    <div class="app-item" onclick="showComingSoon('Calculation History')">
+                        <div class="app-icon purple">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="app-name">History</div>
+                    </div>
+                </div>
+                
+                <div class="quick-info">
+                    <div class="info-card">
+                        <i class="fas fa-lightbulb info-icon"></i>
+                        <div class="info-text">Select a tool to start calculating</div>
+                    </div>
+
+                    <!-- <div class="info-card">
+                        <i class="fas fa-lightbulb info-icon"></i>
+                        <div class="info-text">Use the menu button to change tools</div>
+                    </div> -->
+                </div>
+                
+                <div class="footer">
+                    Created by Soumyaranjan Sahoo
+                </div>
+            </div>
+        </div>
+    </div>
+   </div>
+
+    <script src="./assets/js/app.js"></script>
+    <script>
+        function showComingSoon(toolName) {
+            alert(`${toolName} is coming soon!🚀`);
+        }
+    </script>
+
+</body>
+</html>

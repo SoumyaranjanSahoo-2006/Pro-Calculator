@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Grocery Calculator - Pro Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="icon" type="image/png" href="./assets/icons/icon-192.png">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar  green-mode" id="navbar">
+        <div class="navbar-title">
+            <i class="fas fa-calculator"></i>
+            <span>Grocery Calculator</span>
+        </div>
+        <button class="hamburger-btn" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Sidebar -->
+<div class="sidebar green-bg" id="sidebar">
+    <div class="sidebar-header">
+        <h3><i class="fas fa-store-alt"></i> Pro Tools</h3>
+    </div>
+    <ul class="sidebar-menu">
+        <li class="sidebar-item">
+            <a href="index.html" class="sidebar-link home" data-page="home">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="normal-calculator.html" class="sidebar-link normal" data-page="normal">
+                <i class="fas fa-calculator"></i>
+                <span>Normal Calculator</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="grocery-calculator.html" class="sidebar-link grocery active" data-page="grocery">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Grocery Calculator</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link converter" data-page="converter">
+                <i class="fas fa-exchange-alt"></i>
+                <span>Unit Converter</span>
+            </a>
+        </li>
+        <li class="sidebar-item">
+            <a href="#" class="sidebar-link help" data-page="help">
+                <i class="fas fa-question-circle"></i>
+                <span>Help & Support</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="calculator-container">
+            <!-- Grocery Calculator -->
+            <div class="grocery-calculator">
+                <!-- Mode Toggle -->
+                <div class="mode-toggle">
+                    <div class="mode-slider" id="modeSlider"></div>
+                    <div class="mode-btn active" id="gramModeBtn">
+                        <i class="fas fa-weight-hanging"></i> Gram → ₹
+                    </div>
+                    <div class="mode-btn" id="kgModeBtn">
+                        <i class="fas fa-balance-scale"></i> Kg → ₹
+                    </div>
+                </div>
+
+                <!-- Mode Content Container -->
+                <div class="mode-content-container">
+                    <!-- Gram to Price Mode -->
+                    <div class="mode-content" id="gramMode">
+                        <!-- Price per Kg Input -->
+                        <div class="input-group">
+                            <label for="pricePerKg">
+                                <i class="fas fa-tag"></i> Price per 1 Kg
+                            </label>
+                            <div class="input-wrapper">
+                                <span class="currency-symbol">₹</span>
+                                <input type="number" id="pricePerKg" class="input-field" placeholder="0" min="0" step="0.5">
+                                <span class="unit-symbol">/kg</span>
+                            </div>
+                        </div>
+
+                        <!-- Auto Calculation for 1 Gram -->
+                        <div class="auto-calculation" id="pricePerGramDisplay">
+                            <i class="fas fa-calculator"></i>
+                            <span>Price per 1 gram: <strong id="pricePerGram">₹0.000</strong></span>
+                        </div>
+
+                        <!-- Quantity in Grams Input -->
+                        <div class="input-group">
+                            <label for="quantityGrams">
+                                <i class="fas fa-weight"></i> Quantity in Grams
+                            </label>
+                            <div class="input-wrapper">
+                                <input type="number" id="quantityGrams" class="input-field" placeholder="0" min="0" step="1">
+                                <span class="unit-symbol">g</span>
+                            </div>
+                        </div>
+
+                        <!-- Total Price Result -->
+                        <div class="result-container">
+                            <div class="grocery-result-label">
+                                <i class="fas fa-rupee-sign"></i> Total Price
+                            </div>
+                            <div class="grocery-result-value" id="gramTotalPrice">₹0</div>
+                        </div>
+                    </div>
+
+                    <!-- Kg to Price Mode -->
+                    <div class="mode-content" id="kgMode" style="display: none;">
+                        <!-- Quantity in Kg Input -->
+                        <div class="input-group">
+                            <label for="quantityKg">
+                                <i class="fas fa-balance-scale-left"></i> Quantity in Kg
+                            </label>
+                            <div class="input-wrapper">
+                                <input type="number" id="quantityKg" class="input-field" placeholder="0" min="0" step="0.1">
+                                <span class="unit-symbol">kg</span>
+                            </div>
+                        </div>
+
+                        <!-- Price per Kg Input -->
+                        <div class="input-group">
+                            <label for="pricePerKg2">
+                                <i class="fas fa-tag"></i> Price per 1 Kg
+                            </label>
+                            <div class="input-wrapper">
+                                <span class="currency-symbol">₹</span>
+                                <input type="number" id="pricePerKg2" class="input-field" placeholder="0" min="0" step="0.5">
+                                <span class="unit-symbol">/kg</span>
+                            </div>
+                        </div>
+
+                        <!-- Total Price Result -->
+                        <div class="result-container">
+                            <div class="grocery-result-label">
+                                <i class="fas fa-rupee-sign"></i> Total Price
+                            </div>
+                            <div class="grocery-result-value" id="kgTotalPrice">₹0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-calculate" id="calculateBtn">
+                        <i class="fas fa-calculator"></i> Calculate
+                    </button>
+                    <button class="btn btn-clear" id="clearBtn">
+                        <i class="fas fa-broom"></i> Clear
+                    </button>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    Created by Soumyaranjan Sahoo
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/grocery-calculator.js"></script>
+</body>
+</html>
