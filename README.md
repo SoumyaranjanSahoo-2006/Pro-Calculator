@@ -1,47 +1,35 @@
-🧮 Pro Calculator App
+# 🧮 Pro Calculator App
 
-A modern, mobile-friendly Calculator Web App built using HTML, CSS, and JavaScript, designed to work smoothly on desktop and Android devices.
-It includes a splash screen, sidebar navigation, and multiple calculator tools.
+Pro Calculator is a modern, mobile-friendly web application built using **HTML, CSS, and JavaScript**.  
+It is designed to work smoothly on desktop and Android devices and can be installed as a **PWA**.
 
-🚀 Live Demo
+---
 
-👉 (Add your Netlify link here after deploy)
-Example:
+## ✨ Features
 
-https://pro-calculator.netlify.app
+- Splash screen (shown only once on app open)
+- Normal Calculator
+- Grocery Calculator
+- Responsive design (mobile-first)
+- Sidebar navigation
+- PWA support (Add to Home Screen)
+- Clean and modern UI
 
-✨ Features
+---
 
-🎯 Splash screen shown only once when the app opens
+## 🛠️ Tech Stack
 
-📱 Fully responsive (mobile-first design)
+- HTML5  
+- CSS3  
+- JavaScript (Vanilla)  
+- Font Awesome  
+- PWA (Manifest + Icons)
 
-📐 Normal Calculator
+---
 
-🛒 Grocery Calculator
-
-🍔 Sidebar navigation with smooth UI
-
-🎨 Modern color theme (Blue & Green modes)
-
-📦 PWA-ready (manifest included)
-
-⚡ Fast and lightweight
-
-🛠️ Technologies Used
-
-HTML5
-
-CSS3 (Flexbox & Grid)
-
-JavaScript (Vanilla JS)
-
-Font Awesome Icons
-
-PWA (Manifest + Icons)
-
-📁 Project Folder Structure
-project/
+## 📁 Folder Structure
+```text
+pro-calculator/
 │
 ├── index.html
 ├── normal-calculator.html
@@ -64,104 +52,36 @@ project/
 │   └── icons/
 │       ├── icon-192.png
 │       └── icon-512.png
+│
+└── service-worker.js
+```
+---
 
-🖼️ Splash Screen Behavior
+## 🌐 Deployment
 
-Splash screen appears only on first app load
+This project can be deployed easily using **Netlify** or **GitHub Pages**.
 
-It will NOT appear again when:
+- No build command required
+- Publish directory: `/`
 
-Navigating between pages
+---
 
-Returning to Home
+## 📱 Splash Screen
 
-Controlled using sessionStorage
+- Appears only on first app load
+- Does not show again when navigating pages
+- Controlled using `sessionStorage`
 
-⚙️ How Splash Works
+---
 
-HTML displays splash by default
+## 👨‍💻 Author
 
-JavaScript hides splash after 1.5 seconds
+**Soumyaranjan Sahoo**
 
-A session flag prevents repeat display
+---
 
-sessionStorage.setItem("splashShown", "true");
+## 📜 License
 
-📱 Mobile Optimization
+Free to use for learning and personal projects.
 
-Designed for Android devices (tested on Vivo Y20 G)
 
-No fixed widths
-
-Mobile-safe layouts
-
-Touch-friendly buttons
-
-🌐 How to Deploy on Netlify
-
-Push project to GitHub
-
-Go to 👉 https://www.netlify.com
-
-Click Add New Site → Import from GitHub
-
-Select your repository
-
-Build settings:
-
-Build command: (leave empty)
-
-Publish directory: /
-
-Click Deploy
-
-✅ Done!
-
-📦 PWA Support
-
-This app includes:
-
-manifest.json
-
-App icons (192x192, 512x512)
-
-Theme color support
-
-You can Add to Home Screen on Android.
-
-🧪 Common Issues & Fixes
-Splash not showing after deploy?
-
-Check image path (./assets/images/splash.png)
-
-Ensure file name case matches exactly
-
-Check browser Network tab for 404
-
-UI broken on mobile?
-
-Avoid width: 100vw
-
-Avoid overflow: hidden on body
-
-Use responsive units (%, auto, min-height)
-
-👨‍💻 Author
-
-Soumyaranjan Sahoo
-📍 India
-💻 Frontend Developer
-
-⭐ Future Improvements
-
-Calculation History
-
-Unit Converter
-
-Dark Mode
-
-Offline Support (Service Worker)
-
-📜 License
-
-This project is open-source and free to use for learning and personal projects.
