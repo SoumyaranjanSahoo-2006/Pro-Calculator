@@ -13,7 +13,7 @@ It is designed to work smoothly on desktop and Android devices and can be instal
 - Responsive design (mobile-first)
 - Sidebar navigation
 - PWA support (Add to Home Screen)
-- Clean and modern U
+- Clean and modern UI
 
 ---
 
