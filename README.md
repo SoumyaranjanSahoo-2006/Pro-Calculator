@@ -66,7 +66,7 @@ pro-calculator/
 
 This project can be deployed easily using **Netlify** or **GitHub Pages**.
 
-- No build command required
+- No build command 
 - Publish directory: `/`
 
 ---
