@@ -22,7 +22,7 @@ It is designed to work smoothly on desktop and Android devices and can be instal
 https://soumyaranjansahoo-2006.github.io/Pro-Calculator/
 
 
-## 🛠️ Tech 
+## 🛠️ Tech Stack
 
 - HTML5  
 - CSS3  
