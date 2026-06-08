@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Calc-Normal</title>
+    <link rel="stylesheet" href="./CSS/normal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&display=swap');
+    </style>
+</head>
+<body>
+    <div class="normal-calc">
+        <nav class="navbar">
+            <div class="navbar-title">Normal Calculator</div>
+            <div class="hamburger-btn" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+        <div class="hero">
+            <div class="card">
+                <input type="text" placeholder="0" id="input">
+            </div>
+        </div>
+
+        <div class="calc-btn">
+            <button  id="cleare" class="operation" >AC</button>
+            <button  id="delete" class="operation" >⌫</button>
+            <button value="%" class="operation" id="modulos">%</button>
+            <button value="/" class="operation" id="divisio">/</button>
+
+            <button value="7" class="digit" id="7">7</button>
+            <button value="8" class="digit" id="8">8</button>
+            <button value="9" class="digit" id="9">9</button>
+            <button value="*" class="operation" id="multiplication" >x</button>
+
+
+            <button value="4" class="digit" id="4">4</button>
+            <button value="5" class="digit" id="5">5</button>
+            <button value="6" class="digit" id="6">6</button>
+            <button value="-" class="operation" id="substraction" >-</button>
+            
+            <button value="1" class="digit" id="1">1</button>
+            <button value="2" class="digit" id="2">2</button>
+            <button value="3" class="digit" id="3">3</button>
+            <button value="+" class="operation" id="addition">+</button>
+
+            <button  class="digit" id="zero">0</button>
+            <button  class="digit" >.</button>
+            <button  class="digit" >( )</button>
+            <button  class="operation" id="equal" >=</button>
+        </div>
+        
+        <div class="water-mark">
+            <p>Created By <span>Soumyaranjan</span>  ©2026</p>
+        </div>
+    </div>
+
+    <script src="./Js/normal.js"></script>
+</body>
+</html>

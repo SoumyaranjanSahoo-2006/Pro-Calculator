@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Calc-Home</title>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="./assets/ProCalc.logo.png" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&display=swap');
+    </style>
+</head>
+<body>
+    <div class="procalc">
+        <nav class="navbar">
+            <div class="navbar-title">Pro Calculator</div>
+            <div class="hamburger-btn" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+        
+  
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="side-head">
+                <img src="./assets/ProCalc.logo.png" alt="pro-calc">
+            </div>
+            <h3> Pro Tools</h3>
+        </div>
+        <ul class="sidebar-menu">
+            <!-- <li class="sidebar-item">
+                <a href="#" class="sidebar-link normal active">
+                    <div class="side-card" id="ncl">
+                        <img src="./assets/1.png" alt="ncl">
+                    </div>
+                    <span>Normal Calculator</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link grocery">
+                    <div class="side-card" id="gcl">
+                        <img src="./assets/2.png" alt="gcl">
+                    </div>
+                    <span>Grocery Calculator</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link cgpa">
+                   <div class="side-card" id="cgcl">
+                        <img src="./assets/3.png" alt="cgcl">
+                    </div>
+                    <span>CGPA Calculator</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link age">
+                    <div class="side-card" id="acl">
+                        <img src="./assets/4.png" alt="acl">
+                    </div>
+                    <span>Age Calulator</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link currency">
+                    <div class="side-card" id="ccl">
+                        <img src="./assets/5.png" alt="ccl">
+                    </div>
+                    <span>Currency Converter</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link unit">
+                    <div class="side-card" id="ucl">
+                        <img src="./assets/6.png" alt="ucl">
+                    </div>
+                    <span>Unit Converter</span>
+                </a>
+            </li> -->
+
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link help">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </a>
+            </li>
+
+            
+
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link help">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Help & Support</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a href="#" class="sidebar-link help">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>About</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <p class="credit-text">Made with ❤️ by</p>
+            <h4 class="credit-name">Soumyaranjan Sahoo</h4>
+
+            <div class="social-links">
+                <a href="https://github.com/your-github" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/your-linkedin" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.instagram.com/your-instagram" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p class="credit-reserv">Maintend By vetex.dev All rights reserved ©2026</p>
+        </div>
+
+    </div>
+
+        <div class="hero">
+            <div class="card">
+                <div class="logo">
+                    <h1>Pro <span>C</span>alc.</h1>
+                </div>
+                <p class="tag">Your Universe Of Calculation.</p>
+            </div>
+        </div>
+
+        <div class="tools-box">
+            <div class="tools">
+                <div class="tools-card">
+                    <div class="app" id="normal-cal">
+                        <img class="card-img" src="./assets/1.png" alt="ncl">
+                    </div>
+                    <p><span>Normal</span> Calculator</p>
+                </div>
+
+                <div class="tools-card">
+                    <div class="app" id="grocery-cal">
+                         <img class="card-img" src="./assets/2.png" alt="ncl">
+                    </div>
+                    <p><span>Grocery</span> Calculator</p>
+                </div>
+
+                <div class="tools-card">
+                    <div class="app" id="cgpa-cal">
+                         <img class="card-img" src="./assets/3.png" alt="cgcl">
+                    </div>
+                    <p><span>CGPA</span> Calculator</p>
+                </div>
+
+                <div class="tools-card">
+                    <div class="app" id="age-cal">
+                         <img class="card-img" src="./assets/4.png" alt="acl">
+                    </div>
+                    <p><span>Age</span> Calculator</p>
+                </div>
+
+                <div class="tools-card">
+                    <div class="app" id="currency-cal">
+                         <img class="card-img" src="./assets/5.png" alt="ccl">
+                    </div>
+                    <p><span>Currency</span> Converter</p>
+                </div>
+
+                <div class="tools-card">
+                    <div class="app" id="unit-cal">
+                         <img class="card-img" src="./assets/6.png" alt="ucl">
+                    </div>
+                    <p><span>Unit</span> Converter</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="down-btn">
+            <div class="btn">
+                <p>More Lunching Soon</p>
+                <div class="banner-emoji">🚀</div>
+            </div>
+        </div>
+<!-- 
+        <div class="water-mark">
+            <p>Created By <span>Soumyaranjan Sahoo</span></p>
+            <p>Maintend By vertex.dev</p>
+        </div> -->
+    </div>
+
+    <script src="./Js/script.js"></script>
+</body>
+</html>

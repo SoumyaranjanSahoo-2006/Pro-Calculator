@@ -1,0 +1,273 @@
+*, *::before, *::after { 
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; 
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-focus-ring-color: transparent;
+}
+
+*:focus { outline: none !important; }
+
+
+html {
+  height: 100%;
+  overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  background: #e8f8fa;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 0;
+}
+
+.gro-calc{
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  background-image: url('../assets/grocery-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  position: relative;
+}
+.gro-calc img{
+    width: 100%;
+}
+.navbar {
+  z-index: 1;
+  background-color: #7cb341;
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+}
+
+.hamburger-btn {
+  font-size: 22px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  -webkit-tap-highlight-color: transparent; 
+}
+
+
+.hero{
+  width: 100%;
+  height: 220px;
+  padding-bottom: 20px;
+  border-radius: 0px 0px 30px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #7cb341;
+  /* background-image: linear-gradient(to right, #00c6ff, #0072ff); */
+}
+.hero .input{
+  /* background: #295416; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 85%;
+  height: 190px;
+}
+.input-div{
+  width: 95%;
+  height: 80px;
+  /* background-color: #e8f8fa; */
+}
+.input-div label {
+  display: block;
+  margin-bottom:5px;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  gap: 6px;
+}
+
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.unit-symbol {
+  position: absolute;
+  right:1px;
+  margin-right: 35px;
+  font-size: 14px;
+  font-weight: 600;
+  color:#295416;
+  
+}
+
+.input-field {
+  width: 85%;
+  padding: 15px 30px;
+  font-size: 18px;
+  border:none;
+  font-weight: 600;
+  border-radius: 8px;
+  text-align: center;
+  color: #222121;
+  transition: border-color 0.3s;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: white;
+}
+
+input::placeholder{
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0.4;
+}
+
+.input-field:focus {
+    border-color: var(--primary-green);
+}
+
+.calc-btn{
+  /* background-color: aqua; */
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.calc-btn .btn{
+  width: 30%;
+  height:50%;
+  margin-top:10px ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 18px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+}
+.calc-btn #clear{
+  background-color:#95b700 ;
+  cursor: pointer;
+}
+.calc-btn #clear:hover{
+  background-color: #4a7600;
+}
+.calc-btn #calculate{
+  background-color:#4a7600 ;
+}
+.calc-btn #calculate:hover{
+  background: #95b700;
+}
+.calc-btn .btn:hover {
+  transform: scale(1.05);
+}
+.price-p-g{
+  width: 100%;
+  height: 20px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items:center ;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+  color:#557c3e;
+  font-family: "Inter", sans-serif;
+  /* background: #95b700; */
+}
+.result{
+/* background-color: aqua; */
+width: 100%;
+height:180px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.result .price-box{
+  background:#7cb341;
+  width:75%;
+  height: 150px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+.price-box p{
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
+.price-box h2{
+  font-family: "League Spartan", sans-serif;
+  font-size: 75px;
+}
+
+.water-mark{
+  width: 100%;
+  height: 20px;
+  margin-top: 30px;
+  font-family: "Inter", sans-serif;
+  font-size: 8px;
+  text-align: center;
+  /* background-color: aqua; */
+}
+.water-mark span{
+  font-family: "League Spartan", sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+}
+
+
+
+
+/* ── Animation additions — paste at the bottom of grocery.css ── */
+
+/* Flash animation on result box after calculation */
+@keyframes flashPulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.04); box-shadow: 0 0 18px rgba(76,118,0,0.45); }
+  100% { transform: scale(1); box-shadow: none; }
+}
+
+.result .price-box.flash {
+  animation: flashPulse 0.45s ease-out forwards;
+}
+
+/* Shake animation on invalid/empty inputs */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+.input-field.shake {
+  animation: shake 0.4s ease;
+}

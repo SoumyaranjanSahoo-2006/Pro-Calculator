@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Calc-Grocery</title>
+    <link rel="stylesheet" href="./CSS/grocery.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&display=swap');
+    </style>
+</head>
+<body>
+    <div class="gro-calc">
+        <nav class="navbar">
+            <div class="navbar-title">Grocery Calculator</div>
+            <div class="hamburger-btn" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+        <div class="hero">
+            <div class="input">
+                <div class="input-div">
+                    <label for="pricePerKg"> Price per 1 Kg</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="pricePerKg" class="input-field" placeholder="Enter ammount" min="0" step="0.5">
+                        <span class="unit-symbol">/kg</span>
+                    </div>
+                </div>
+                <div class="input-div">
+                    <label for="quantityGrams">Quantity in Grams</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="quantityGrams" class="input-field" placeholder="Enter weight" min="0" step="1">
+                        <span class="unit-symbol">g</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="calc-btn">
+            <div class="btn" id="clear">
+                <p>Clear</p>
+            </div>
+
+            <div class="btn" id="calculate">
+                <p>Calculate</p>
+            </div>
+        </div>
+
+        <div class="price-p-g">
+            <p>Price Per 1 Gram:0.00 </p>
+        </div>
+
+        <div class="result">
+            <div class="price-box">
+                <p>Total Price : </p>
+                <h2>00.00</h2>
+            </div>
+        </div>
+
+        <div class="water-mark">
+            <p>Created By <span>Soumyaranjan</span> ©2026</p>
+        </div>
+    </div>
+    <script src="./Js/grocery.js"></script>
+</body>
+</html>
