@@ -76,7 +76,7 @@ body {
 
 .hero{
   width: 100%;
-  height: 160px;
+  height: 180px;
   border-radius: 0px 0px 30px 30px;
   display: flex;
   justify-content: center;
@@ -118,6 +118,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 20px 0px 20px 0px;
   /* background-color: aqua; */
 } 
 .tools {
@@ -390,69 +391,7 @@ body {
   color: var(--accent-purple);
 }
 
-/* ===== Responsive Fixes ===== */
 
-/* Tablets */
-/* @media (max-width: 992px) {
-  .navbar-title {
-    font-size: 18px;
-  }
-
-  .sidebar {
-    width: 260px;
-  }
-}
-
-
-@media (max-width: 768px) {
-  body {
-    overflow-x: hidden;
-  }
-
-  .navbar {
-    padding: 12px;
-  }
-
-  .navbar-title span {
-    font-size: 16px;
-  }
-
-  .sidebar {
-    width: 240px;
-  }
-
-  .sidebar-link {
-    font-size: 14px;
-    padding: 10px 15px;
-  }
-} */
-/* 
-@media (max-width: 480px) {
-  .navbar-title span {
-    font-size: 15px;
-  }
-
-  .hamburger-btn {
-    font-size: 20px;
-  }
-
-  .sidebar {
-    width: 220px;
-  }
-} */
-
-/* 
-@media (min-width: 1400px) {
-  .navbar {
-    padding: 18px 30px;
-  }
-
-  .sidebar {
-    width: 300px;
-  }
-} */
-
-/* ===== Sidebar Credit Section ===== */
 .sidebar-footer {
   position: absolute;
   bottom: 20px;
