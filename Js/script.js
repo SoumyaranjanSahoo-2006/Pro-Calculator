@@ -16,6 +16,7 @@ function closeSidebar() {
   sidebar.classList.remove("active");
   overlay.classList.remove("active");
   document.body.style.overflow = "auto";
+  allCalcParent.classList.remove("open");
 }
 
 overlay.addEventListener("click", closeSidebar);
@@ -58,3 +59,27 @@ document.querySelectorAll(".dropdown-link").forEach(link => {
   });
 });
 
+// App card navigation
+document.getElementById("normal-cal").addEventListener("click", () => {
+  window.location.href = "normal.html";
+});
+
+document.getElementById("grocery-cal").addEventListener("click", () => {
+  window.location.href = "grocery.html";
+});
+
+document.getElementById("cgpa-cal").addEventListener("click", () => {
+  window.location.href = "./pages/cgpa-calculator.html";
+});
+
+document.getElementById("age-cal").addEventListener("click", () => {
+  window.location.href = "age.html";
+});
+
+document.getElementById("currency-cal").addEventListener("click", () => {
+  window.location.href = "./pages/currency-converter.html";
+});
+
+document.getElementById("unit-cal").addEventListener("click", () => {
+  window.location.href = "./pages/unit-converter.html";
+});
