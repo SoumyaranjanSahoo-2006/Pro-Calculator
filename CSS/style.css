@@ -76,16 +76,17 @@ body {
 
 .hero{
   width: 100%;
-  height: 180px;
+  height: 230px;
   border-radius: 0px 0px 30px 30px;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: var(--sky);
 }
 .hero> .card{
   width: 78%;
   height: 130px;
-  margin-top: 20px;
+  /* margin-top: 50px; */
   border-radius: 25px;
   display: flex;
   flex-direction: column;
@@ -114,11 +115,11 @@ body {
 /* toolscard */
 .tools-box{
   width: 100%;
-  height: 280px;
+  height: 330px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px 0px 20px 0px;
+  margin: 40px 0px 20px 0px;
   /* background-color: aqua; */
 } 
 .tools {
@@ -128,7 +129,7 @@ body {
   /* background-color: bisque; */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  gap: 20px;
 }
 
 .tools > .tools-card {
@@ -137,10 +138,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  gap: 5px;
+  margin-top: 10px;
 }
 .tools-card> .app{
   width: 95%;
-  height: 80px;
+  height: 100px;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -199,6 +202,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 25px;
 }
 .down-btn .btn{
   width: 80%;
@@ -269,6 +273,8 @@ body {
   z-index: 200;
   overflow-y: auto;
   padding-top: 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar.active {
@@ -294,6 +300,7 @@ body {
   padding:  12px 20px;
   text-align: center;
   display: flex;
+  flex-shrink: 0;
   /* justify-content:; */
   border-bottom: 1px solid #ffffff1a;
   margin-bottom: 10px;
@@ -310,7 +317,7 @@ body {
   width: 100%;
 }
 .sidebar-header h3 {
-  font-size: 20px;
+  font-size: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -320,9 +327,13 @@ body {
 .sidebar-menu {
   list-style: none;
   padding: 0 15px;
-  margin-top: 0;
+  margin-top: 30px;
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none;
 }
-
+.sidebar-menu::-webkit-scrollbar { display: none; }
 .sidebar-item {
   margin-bottom: 4px;
 }
@@ -336,7 +347,7 @@ body {
   text-decoration: none;
   border-radius: 10px;
   transition: all 0.3s;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 500;
 }
 
@@ -353,48 +364,11 @@ body {
   justify-content: center;
   border-radius: 5px;
 }
-#ncl{
-  background-color: #d4baf9;
-}
-#gcl{
-  background-color: #73b641;
-}
-#cgcl{
-  background-color: #ffa1c4;
-}
-#acl{
-  background-color: #ffb162;
-}
-#ccl{
-  background-color: #81d6dd;
-}
-#ucl{
-  background-color: #fcde66;
-}
-.side-card img{
-  width: 23px;
-}
-
-.sidebar-link.grocery i {
-  color: var(--accent-yellow);
-}
-.sidebar-link.normal i {
-  color: var(--light-blue);
-}
-.sidebar-link.converter i {
-  color: var(--accent-orange);
-}
-.sidebar-link.history i {
-  color: var(--light-green);
-}
-.sidebar-link.help i {
-  color: var(--accent-purple);
-}
 
 
 .sidebar-footer {
   position: absolute;
-  bottom: 20px;
+  bottom: 100px;
   left: 0;
   width: 100%;
   text-align: center;
@@ -446,4 +420,65 @@ body {
 
 
 
+.sidebar-footer {
+  position: relative;     
+  bottom: auto;
+  flex-shrink: 0;
+  border-top: 1px solid #ffffff26;
+  padding: 12px 8px;
+  background: var(--sky-dark); 
+}
 
+
+.has-dropdown .sidebar-link {
+  justify-content: space-between;
+}
+
+.dropdown-arrow {
+  font-size: 13px;
+  transition: transform 0.3s ease;
+  margin-left: auto;
+}
+
+.has-dropdown.open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  list-style: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+  opacity: 0;
+  padding-left: 10px;
+}
+
+.has-dropdown.open .dropdown-menu {
+  max-height: 400px;
+  opacity: 1;
+}
+
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  color: #ffffffcc;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+  margin-bottom: 2px;
+}
+
+.dropdown-link:hover {
+  background: #ffffff26;
+  color: #fff;
+}
+
+.dropdown-link i {
+  font-size: 13px;
+  width: 16px;
+  text-align: center;
+}

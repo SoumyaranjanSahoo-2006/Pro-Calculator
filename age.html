@@ -1,15 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Age Founder</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Age Founder</title>
+<link rel="stylesheet" href="./CSS/age.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="shortcut icon" href="./assets/ProCalc.logo.png" type="image/x-icon">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&display=swap');
     </style>
 </head>
 <body>
-    
+
+<!-- BIRTHDAY POPUP -->
+<div class="popup-overlay" id="bday-popup">
+  <div class="popup-card">
+    <div class="balloons">🎈🎈🎈</div>
+    <div class="confetti-row">🎉🎂🎉</div>
+    <div class="popup-title" id="popup-title">Happy Birthday!</div>
+    <div class="popup-age"   id="popup-age">You're turning 1 today 🎊</div>
+    <div class="popup-msg"   id="popup-msg">Wishing you a day filled with joy, laughter, and all the happiness in the world!</div>
+    <button class="popup-close" onclick="closePopup()">Thank You! 🎁</button>
+  </div>
+</div>
+
+<div class="app-wrapper">
+
+  <!-- TOP ORANGE -->
+  <div class="top-section">
+    <div class="header">
+      <h1>Age Founder</h1>
+      <button class="menu-btn">⋮</button>
+    </div>
+
+    <div class="tab-toggle">
+      <button class="tab-btn active" id="tab-today" onclick="switchTab('today')">
+        <span class="tab-icon">🗓️</span> Age Today
+      </button>
+      <button class="tab-btn" id="tab-specific" onclick="switchTab('specific')">
+        Specific Date <span class="tab-icon">🏛️</span>
+      </button>
+    </div>
+
+    <div class="field-label">Date of Birth</div>
+    <div class="date-input-wrap" id="dob-wrap">
+      <input class="date-seg seg-dd"   id="dob-dd"   type="number" min="1" max="31"   placeholder="DD"   maxlength="2" inputmode="numeric" oninput="handleSeg(this,'dob-mm',null,2)"  onblur="padSeg(this)">
+      <span class="date-sep">/</span>
+      <input class="date-seg seg-mm"   id="dob-mm"   type="number" min="1" max="12"   placeholder="MM"   maxlength="2" inputmode="numeric" oninput="handleSeg(this,'dob-yyyy','dob-dd',2)" onblur="padSeg(this)">
+      <span class="date-sep">/</span>
+      <input class="date-seg seg-yyyy" id="dob-yyyy" type="number" min="1900" max="2099" placeholder="YYYY" maxlength="4" inputmode="numeric" oninput="handleSeg(this,null,'dob-mm',4)"  onblur="tryCalculate()">
+      <span class="date-spacer"></span>
+      <button class="cal-btn" onclick="openPicker('dob-picker')" type="button">📅</button>
+      <input type="date" id="dob-picker" class="hidden-date-picker" onchange="pickerChanged(this,'dob')">
+    </div>
+
+    <div id="asof-wrap" style="display:none;">
+      <div class="field-label">Calculate Age As Of</div>
+      <div class="date-input-wrap" id="asof-wrap-inner">
+        <input class="date-seg seg-dd"   id="asof-dd"   type="number" min="1" max="31"   placeholder="DD"   maxlength="2" inputmode="numeric" oninput="handleSeg(this,'asof-mm',null,2)"   onblur="padSeg(this)">
+        <span class="date-sep">/</span>
+        <input class="date-seg seg-mm"   id="asof-mm"   type="number" min="1" max="12"   placeholder="MM"   maxlength="2" inputmode="numeric" oninput="handleSeg(this,'asof-yyyy','asof-dd',2)" onblur="padSeg(this)">
+        <span class="date-sep">/</span>
+        <input class="date-seg seg-yyyy" id="asof-yyyy" type="number" min="1900" max="2099" placeholder="YYYY" maxlength="4" inputmode="numeric" oninput="handleSeg(this,null,'asof-mm',4)"   onblur="tryCalculate()">
+        <span class="date-spacer"></span>
+        <button class="cal-btn" onclick="openPicker('asof-picker')" type="button">📅</button>
+        <input type="date" id="asof-picker" class="hidden-date-picker" onchange="pickerChanged(this,'asof')">
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-section">
+    <div class="age-title" id="result-title">Your Current Age</div>
+    <div class="age-main"  id="age-display">00 Years, 00 Months, 00 Days</div>
+    <div class="born-day"  id="born-day">Born on a —</div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-number" id="total-days">0</span>
+        <span class="stat-label">Total Days</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="total-weeks">0</span>
+        <span class="stat-label">Total Weeks</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="total-months">0</span>
+        <span class="stat-label">Total Months</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number" id="total-hours">0</span>
+        <span class="stat-label">Total Hours</span>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="birthday-section">
+    <div class="birthday-banner">
+      <div class="bday-label" id="bday-banner-label">Next Birthday</div>
+      <div class="bday-date"  id="next-bday">—</div>
+      <div class="bday-pills">
+        <div class="bday-pill" id="days-to-go">— days to go</div>
+        <div class="bday-pill" id="turning-age">Turning —</div>
+      </div>
+    </div>
+
+    <div class="advance-wish" id="advance-wish">
+      <span class="wish-icon"  id="wish-icon">🎊</span>
+      <div  class="wish-title" id="wish-title">Advance Birthday Wishes!</div>
+      <div  class="wish-text"  id="wish-text">Your special day is just around the corner!</div>
+    </div>
+  </div>
+
+  
+  <div class="footer footer-credit">
+    Created By <span>Soumyaranjan sahoo</span>
+  </div>
+
+  <div class="bottom-spacer"></div>
+</div>
+
+<script src="./Js/age.js"></script>
 </body>
 </html>
