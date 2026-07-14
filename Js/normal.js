@@ -1,119 +1,154 @@
-let expr = '';
-  let justEvaled = false;
- 
-  const exprEl   = document.getElementById('exprText');
-  const resultEl = document.getElementById('result');
- 
-  function updateDisplay() {
-    exprEl.textContent = expr === '' ? '0' : expr;
-    // live preview
-    if (expr !== '') {
-      try {
-        const preview = safeEval(expr);
-        if (preview !== null && String(preview) !== expr) {
-          resultEl.textContent = format(preview);
-        } else {
-          resultEl.textContent = '';
-        }
-      } catch { resultEl.textContent = ''; }
+const lineTop = document.getElementById('lineTop');
+const lineBottom = document.getElementById('lineBottom');
+const cursor = document.getElementById('cursor');
+
+let expression = '';   // what's being typed
+let showingResult = false;
+
+function isOperator(ch) {
+  return ['+', '-', '*', '/', '%'].includes(ch);
+}
+
+function render() {
+  if (showingResult) {
+    // result mode: result is big and on top, expression small on bottom
+    lineTop.textContent = lineBottom.dataset.result;
+    lineTop.className = 'line large';
+    lineBottom.textContent = expression || '0';
+    lineBottom.className = 'line small';
+  } else {
+    // typing mode: expression is big and on bottom, top stays small/empty
+    lineTop.textContent = '';
+    lineTop.className = 'line small';
+    lineBottom.textContent = expression || '0';
+    lineBottom.className = 'line large';
+  }
+}
+
+function getCurrentSegment() {
+  // returns the number segment currently being typed (after the last operator/bracket)
+  const match = expression.match(/[0-9.]*$/);
+  return match ? match[0] : '';
+}
+
+function appendValue(val) {
+  if (showingResult) {
+    if (isOperator(val)) {
+      expression = lineTop.textContent + val;
     } else {
-      resultEl.textContent = '';
+      expression = val === '.' ? '0.' : val;
     }
+    showingResult = false;
+    render();
+    return;
   }
- 
-  function safeEval(e) {
-    // replace display chars with JS operators
-    let s = e
-      .replace(/×/g, '*')
-      .replace(/÷/g, '/')
-      .replace(/−/g, '-');
-    // handle %: treat as /100 after a number
-    s = s.replace(/(\d+(\.\d+)?)%/g, '($1/100)');
-    // handle parentheses auto-close
-    const open  = (s.match(/\(/g) || []).length;
-    const close = (s.match(/\)/g) || []).length;
-    if (open > close) s += ')'.repeat(open - close);
-    try {
-      // eslint-disable-next-line no-new-func
-      const r = Function('"use strict"; return (' + s + ')')();
-      if (!isFinite(r)) return null;
-      return r;
-    } catch { return null; }
+
+  if (val === '.') {
+    const segment = getCurrentSegment();
+    if (segment.includes('.')) return; // block second dot in same number
+    if (segment === '') expression += '0'; // "." at start becomes "0."
+    expression += '.';
+    render();
+    return;
   }
- 
-  function format(n) {
-    if (n === null || n === undefined) return '';
-    const s = parseFloat(n.toFixed(10)).toString();
-    return s;
+
+  const last = expression.slice(-1);
+  if (isOperator(val) && isOperator(last)) {
+    expression = expression.slice(0, -1) + val; // replace last operator
+  } else {
+    expression += val;
   }
- 
-  function pressBtn(val) {
-    if (justEvaled && /[\d.(]/.test(val)) {
-      expr = ''; // start fresh after = if typing a number
+  render();
+}
+
+function appendBracket() {
+  if (showingResult) {
+    expression = '(';
+    showingResult = false;
+    render();
+    return;
+  }
+
+  const openCount = (expression.match(/\(/g) || []).length;
+  const closeCount = (expression.match(/\)/g) || []).length;
+  const hasUnclosed = openCount > closeCount;
+
+  const last = expression.slice(-1);
+  const canClose = hasUnclosed && last !== '(' && !isOperator(last);
+
+  if (canClose) {
+    expression += ')';
+  } else if (/[0-9)]/.test(last)) {
+    expression += '*('; // implicit multiplication
+  } else {
+    expression += '(';
+  }
+  render();
+}
+
+function clearAll() {
+  expression = '';
+  showingResult = false;
+  render();
+}
+
+function deleteLast() {
+  if (showingResult) {
+    clearAll();
+    return;
+  }
+  expression = expression.slice(0, -1);
+  render();
+}
+
+function calculate() {
+  if (!expression) return;
+  try {
+    const sanitized = expression.replace(/%/g, '/100');
+    if (!/^[0-9+\-*/.() ]*$/.test(sanitized)) throw new Error('bad expr');
+    const result = Function('"use strict"; return (' + sanitized + ')')();
+    if (result === undefined || Number.isNaN(result) || !Number.isFinite(result)) {
+      throw new Error('invalid');
     }
-    justEvaled = false;
- 
-    if (val === '⌫') {
-      expr = expr.slice(0, -1);
-    } else if (val === '()') {
-      // smart bracket: open if last char is operator/empty, else close
-      const last = expr.slice(-1);
-      const open  = (expr.match(/\(/g) || []).length;
-      const close = (expr.match(/\)/g) || []).length;
-      if (expr === '' || /[+\-×÷/(]/.test(last)) {
-        expr += '(';
-      } else if (open > close) {
-        expr += ')';
-      } else {
-        expr += '×(';
-      }
-    } else if (val === '%') {
-      expr += '%';
-    } else {
-      // prevent double operators
-      const last = expr.slice(-1);
-      const isOp = (c) => /[+\-×÷/]/.test(c);
-      if (isOp(val) && isOp(last)) {
-        expr = expr.slice(0, -1) + val;
-      } else {
-        expr += val;
-      }
-    }
-    updateDisplay();
+    const rounded = Math.round(result * 1e10) / 1e10;
+    lineBottom.dataset.result = rounded.toString();
+    showingResult = true;
+    render();
+  } catch (e) {
+    lineBottom.dataset.result = 'Error';
+    showingResult = true;
+    render();
   }
- 
-  function pressAC() {
-    expr = '';
-    justEvaled = false;
-    resultEl.textContent = '';
-    updateDisplay();
+}
+
+// wire up buttons
+document.querySelectorAll('.digit, .operation').forEach(btn => {
+  if (['cleare', 'delete', 'equal', 'bracket'].includes(btn.id)) return;
+  btn.addEventListener('click', () => appendValue(btn.dataset.value));
+});
+
+document.getElementById('cleare').addEventListener('click', clearAll);
+document.getElementById('delete').addEventListener('click', deleteLast);
+document.getElementById('equal').addEventListener('click', calculate);
+document.getElementById('bracket').addEventListener('click', appendBracket);
+
+render();
+
+
+
+
+function render() {
+  if (showingResult) {
+    lineTop.textContent = lineBottom.dataset.result;
+    lineTop.className = 'line large';
+    lineBottom.textContent = expression || '0';
+    lineBottom.className = 'line small';
+    cursor.classList.add('hidden');
+  } else {
+    lineTop.textContent = '';
+    lineTop.className = 'line small';
+    lineBottom.textContent = expression || '0';
+    lineBottom.className = 'line large';
+    cursor.classList.remove('hidden');
   }
- 
-  function pressEquals() {
-    if (expr === '') return;
-    const res = safeEval(expr);
-    if (res !== null) {
-      resultEl.textContent = '';
-      expr = format(res);
-      exprEl.textContent = expr;
-      justEvaled = true;
-    } else {
-      resultEl.textContent = 'Error';
-    }
-  }
- 
-  // Keyboard support
-  document.addEventListener('keydown', (e) => {
-    const map = {
-      '0':'0','1':'1','2':'2','3':'3','4':'4',
-      '5':'5','6':'6','7':'7','8':'8','9':'9',
-      '+':'+','-':'-','*':'×','/':'÷','%':'%',
-      '.':'.','(':' (',')':")'",'Enter':'=','Backspace':'⌫','Escape':'AC'
-    };
-    if (e.key === 'Enter') { pressEquals(); return; }
-    if (e.key === 'Escape') { pressAC(); return; }
-    if (e.key === 'Backspace') { pressBtn('⌫'); return; }
-    if (map[e.key]) pressBtn(map[e.key]);
-  });
- 
-  updateDisplay();
+}

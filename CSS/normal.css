@@ -61,7 +61,7 @@ body {
 .navbar-title {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 20px;
   color: var(--white);
   letter-spacing: 0.3px;
 }
@@ -76,16 +76,113 @@ body {
 
 .hero{
   width: 100%;
-  height: 160px;
+  height: 250px;
   border-radius: 0px 0px 30px 30px;
   display: flex;
+  align-items: center;
   justify-content: center;
   background-color: var(--primary-purple);
 }
 
+.card{
+height: 100%;
+width: 100%;
+display: flex;
+/* align-items: center; */
+justify-content: center;
+}
+.card input{
+  height: 100px;
+  width: 90%;
+  margin-top: 30;
+  background-color: #6c1ea7;
+  /* border: none; */
+}
+
+
+.card {
+  padding: 0 25px;
+  align-items: center;
+}
+
+.display {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  min-height: 120px;
+}
+
+.line {
+  width: 100%;
+  text-align: right;
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  transition: font-size 0.2s ease, opacity 0.2s ease, color 0.2s ease;
+  scrollbar-width: none;
+}
+.line::-webkit-scrollbar { display: none; }
+
+.line.small {
+  font-size: 22px;
+  font-weight: 500;
+  opacity: 0.65;
+}
+
+.line.large {
+  font-size: 56px;
+  font-weight: 700;
+  opacity: 1;
+}
+
+.calc-btn button {
+  transition: transform 0.08s ease, filter 0.15s ease;
+}
+.calc-btn button:active {
+  transform: scale(0.94);
+  filter: brightness(0.9);
+}
+
+#equal {
+  background-color: var(--primary-purple) !important;
+  color: var(--white);
+}
+
+
+.line-bottom-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  width: 100%;
+}
+
+.cursor {
+  color: var(--white);
+  font-weight: 300;
+  font-size: 56px;
+  color: var(--aec-purple);
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+.cursor.hidden {
+  display: none;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+
 .calc-btn{
   width: 100%;
-  height: 400px;
+  height: 450px;
+  margin-top: 30px;
   padding: 15px 30px 15px 30px;
   display: grid;
   grid-gap: 10px;
@@ -113,12 +210,15 @@ body {
 
 .water-mark{
   width: 100%;
-  height: 20px;
-  margin-top: 10px;
+  height: 50px;
+  margin-top: 20px;
   font-family: "Inter", sans-serif;
   font-size: 8px;
   letter-spacing: 1.2px;
   text-align: center;color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /* background-color: aqua; */
 }
 .water-mark span{
