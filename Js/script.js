@@ -1,85 +1,101 @@
+// ==========================
 // Elements
+// ==========================
 const hamburgerBtn = document.getElementById("hamburgerBtn");
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("sidebarOverlay");
 const sidebarLinks = document.querySelectorAll(".sidebar-link");
 
-// Open sidebar
-hamburgerBtn.addEventListener("click", () => {
-  sidebar.classList.add("active");
-  overlay.classList.add("active");
-  document.body.style.overflow = "hidden";
-});
+const allCalcToggle = document.getElementById("allCalcToggle");
+const allCalcParent = allCalcToggle
+  ? allCalcToggle.closest(".has-dropdown")
+  : null;
 
-// Close sidebar
-function closeSidebar() {
-  sidebar.classList.remove("active");
-  overlay.classList.remove("active");
-  document.body.style.overflow = "auto";
-  allCalcParent.classList.remove("open");
+// ==========================
+// Open Sidebar
+// ==========================
+if (hamburgerBtn) {
+  hamburgerBtn.addEventListener("click", () => {
+    sidebar.classList.add("active");
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+  });
 }
 
-overlay.addEventListener("click", closeSidebar);
+// ==========================
+// Close Sidebar
+// ==========================
+function closeSidebar() {
+  if (sidebar) sidebar.classList.remove("active");
+  if (overlay) overlay.classList.remove("active");
 
-// Active menu handling
-sidebarLinks.forEach(link => {
+  document.body.style.overflow = "auto";
+
+  if (allCalcParent) {
+    allCalcParent.classList.remove("open");
+  }
+}
+
+if (overlay) {
+  overlay.addEventListener("click", closeSidebar);
+}
+
+// ==========================
+// Sidebar Active Links
+// ==========================
+sidebarLinks.forEach((link) => {
   link.addEventListener("click", () => {
-    // Don't close sidebar if it's the dropdown toggle
     if (link.id === "allCalcToggle") return;
 
-    sidebarLinks.forEach(l => l.classList.remove("active"));
+    sidebarLinks.forEach((l) => l.classList.remove("active"));
     link.classList.add("active");
+
     closeSidebar();
   });
 });
 
-
-
-// Dropdown toggle for All Calculator
-const allCalcToggle = document.getElementById("allCalcToggle");
-const allCalcParent = allCalcToggle.closest(".has-dropdown");
-
-allCalcToggle.addEventListener("click", (e) => {
-  e.preventDefault();
-  allCalcParent.classList.toggle("open");
-});
-
-// Clicking a dropdown item scrolls to the card and closes sidebar
-document.querySelectorAll(".dropdown-link").forEach(link => {
-  link.addEventListener("click", (e) => {
+// ==========================
+// Dropdown Toggle
+// ==========================
+if (allCalcToggle) {
+  allCalcToggle.addEventListener("click", (e) => {
     e.preventDefault();
-    const target = link.dataset.target;
-    const card = document.getElementById(target);
-    if (card) {
-      card.scrollIntoView({ behavior: "smooth", block: "center" });
-      card.style.boxShadow = "0 0 0 3px var(--sky-dark)";
-      setTimeout(() => card.style.boxShadow = "", 1200);
+
+    if (allCalcParent) {
+      allCalcParent.classList.toggle("open");
     }
+  });
+}
+
+// ==========================
+// Dropdown Links
+// ==========================
+// No preventDefault() here!
+// The browser will automatically open the page.
+document.querySelectorAll(".dropdown-link").forEach((link) => {
+  link.addEventListener("click", () => {
     closeSidebar();
   });
 });
 
-// App card navigation
-document.getElementById("normal-cal").addEventListener("click", () => {
-  window.location.href = "normal.html";
-});
+// ==========================
+// App Card Navigation
+// ==========================
+const pages = {
+  "normal-cal": "normal.html",
+  "grocery-cal": "grocery.html",
+  "cgpa-cal": "./pages/cgpa-calculator.html",
+  "age-cal": "age.html",
+  "currency-cal": "./pages/currency-converter.html",
+  "unit-cal": "./pages/unit-converter.html",
+};
 
-document.getElementById("grocery-cal").addEventListener("click", () => {
-  window.location.href = "grocery.html";
-});
+Object.keys(pages).forEach((id) => {
+  const element = document.getElementById(id);
 
-document.getElementById("cgpa-cal").addEventListener("click", () => {
-  window.location.href = "./pages/cgpa-calculator.html";
-});
-
-document.getElementById("age-cal").addEventListener("click", () => {
-  window.location.href = "age.html";
-});
-
-document.getElementById("currency-cal").addEventListener("click", () => {
-  window.location.href = "./pages/currency-converter.html";
-});
-
-document.getElementById("unit-cal").addEventListener("click", () => {
-  window.location.href = "./pages/unit-converter.html";
+  if (element) {
+    element.addEventListener("click", () => {
+      window.location.href = pages[id];
+    });
+  }
 });
