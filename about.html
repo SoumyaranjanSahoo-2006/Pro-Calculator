@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&display=swap');
+
+
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-focus-ring-color: transparent;
+        }
+
+        *:focus {
+            outline: none !important;
+        }
+
+
+        html {
+            height: 100%;
+            overflow: hidden;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        :root {
+            --sky: #81d6dd;
+            --sky-light: #a8e6ef;
+            --sky-dark: #3ab5c6;
+            --white: #ffffff;
+            --text-dark: #2d3748;
+            --text-mid: #4a5568;
+            --light-purple: #d4baf9;
+            --card-radius: 20px;
+            --tile-radius: 22px;
+        }
+
+        .about {
+            width: 100%;
+            max-width: 420px;
+            min-height: 100vh;
+            background: #f0fbfd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero {
+            height: 350px;
+            width: 100%;
+            padding:20px 0 30px;
+            border-radius: 0px 0px 25px 25px;
+            background-color: var(--sky);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            width: 70%;
+            height: 100px;
+            /* background-color: aquamarine; */
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+
+        }
+
+        .logo .logopic {
+            height: 70px;
+            width: 70px;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background-color: var(--white);
+        }
+
+        .logopic img {
+            height: 65px;
+            margin-left: 5px;
+        }
+
+        .logo .logo-text {
+            display: flex;
+            flex-direction: column;
+            /* justify-content: ; */
+        }
+
+        .logo-text h2 {
+            font-family: "League Spartan", sans-serif;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 45px;
+        }
+
+        .logo-text h2 span {
+            color: #fcde66;
+        }
+
+        .logo-text p {
+            font-family: "Inter", sans-serif;
+            color: var(--white);
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .about-sec {
+            width: 90%;
+            padding: 18px;
+            border-radius: 18px;
+            margin-top: 20px;
+            /* box-shadow: 0 8px 20px rgba(0, 0, 0, .08); */
+        }
+
+        .about-sec h3 {
+            font-family: "League Spartan", sans-serif;
+            color: var(--white);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .about-sec p {
+            font-family: "Inter", sans-serif;
+            color: var(--white);
+            text-align: justify;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+      
+        .manage{
+            height: 150px;
+            width: 85%;
+            margin-top: 20px;
+            border-radius: 10px;
+            background-color: var(--sky);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .manage .text{
+            color: #ffffff;
+        }
+
+        .text h2{
+            color: var(--white);
+            font-weight: bold;
+            font-family: "Inter", sans-serif;
+            font-size: 15px;
+        }
+
+        .text h3{
+            font-family: "Inter", sans-serif;
+            color: var(--white);
+            font-size: 13px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+        .manage .logo-cr{
+            height: 90px;
+            width: 100px;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+        .logo-cr img{
+            height: 90px; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="about">
+        <div class="hero">
+            <div class="logo">
+                <div class="logopic">
+                    <img src="assets/ProCalc.logo.png" alt="">
+                </div>
+                <div class="logo-text">
+                    <h2>Pro <span>C</span>alc.</h2>
+                    <p>Your Universe of Calculation</p>
+                </div>
+            </div>
+
+            <div class="about-sec">
+                <h3>About</h3>
+                <p>
+                    ProCalculator is an all-in-one utility app that provides fast, accurate, and easy-to-use calculation
+                    tools for everyday needs. From basic and scientific calculations to unit conversion, currency
+                    conversion, and a Grocery Calculator for buyers and sellers, everything is available in one place
+                    with a modern and user-friendly interface.
+                </p>
+            </div>
+        </div>
+
+        <div class="manage">
+            <div class="text">
+                <h2>Created & Designed by:</h2>
+                <h3>Soumyaranjan Sahoo</h3>
+                <h2>Managed by:</h2>
+                <h3>vertex.dev</h3>
+            </div>
+            <div class="logo-cr">
+                <img src="assets/vertexDEV.png" alt="">
+            </div>
+        </div>
+
+        
+    </div>
+</body>
+
+</html>

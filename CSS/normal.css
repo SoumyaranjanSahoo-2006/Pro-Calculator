@@ -227,3 +227,23 @@ justify-content: center;
   font-size: 10px;
   letter-spacing: 0.5px;
 }
+
+
+
+/* ---------- Very small phones ---------- */
+@media (max-width: 340px) {
+  .hero { height: clamp(150px, 25vh, 200px); }
+  .calc-btn button { min-height: 40px; }
+}
+
+/* ---------- Short screens (landscape phones) ---------- */
+@media (max-height: 600px) {
+  .hero { height: clamp(120px, 22vh, 180px); }
+  .calc-btn { margin-top: 10px; }
+  .water-mark { padding: 6px 0; }
+}
+
+/* ---------- Tablets / desktop ---------- */
+@media (min-width: 480px) {
+  .normal-calc { max-width: 420px; }
+}
