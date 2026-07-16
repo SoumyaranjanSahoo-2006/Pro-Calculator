@@ -84,7 +84,7 @@ document.querySelectorAll(".dropdown-link").forEach((link) => {
 const pages = {
   "normal-cal": "normal.html",
   "grocery-cal": "grocery.html",
-  "cgpa-cal": "./pages/cgpa-calculator.html",
+  "cgpa-cal": "cgpa.html",
   "age-cal": "age.html",
   "currency-cal": "./pages/currency-converter.html",
   "unit-cal": "./pages/unit-converter.html",
