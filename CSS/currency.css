@@ -1,0 +1,537 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-focus-ring-color: transparent;
+}
+
+*:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+html {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---------- MONEY-THEMED PALETTE ----------
+   Emerald reads as "currency/value", warm gold reads as "exchange/premium".
+   Kept distinct from the CGPA page's blue so each tool has its own identity. */
+:root{
+  --green-deep: #0B5D45;
+  --green: #128A63;
+  --green-light: #E7F5EE;
+  --gold: #E0A537;
+  --gold-light: #FCEFD1;
+  --cream: #FBF8F1;
+  --ink: #17261F;
+}
+
+body {
+  background: #f1ede0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 0;
+}
+
+.currency-calc{
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  background-color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  z-index: 1;
+  background-color: var(--green);
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  color: #ffffff;
+  letter-spacing: 0.3px;
+}
+.hamburger-btn {
+  font-size: 22px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  width: 100%;
+  padding: 30px 22px 34px 22px;
+  border-radius: 0px 0px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(160deg, var(--green) 0%, var(--green-deep) 100%);
+}
+
+.convert-card{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ---------- CURRENCY PAIR: dropdowns stacked, swap button between ---------- */
+.currency-pair{
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  position: relative;
+}
+
+.currency-select-wrap{
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 14px;
+  padding: 16px 40px 16px 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  border: 2px solid transparent;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.currency-select-wrap:hover{
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  transform: translateY(-1px);
+}
+.currency-select-wrap:focus-within{
+  border-color: var(--gold);
+}
+
+/* Color-themed cards: emerald for the source currency, gold/amber for the target */
+.from-wrap{
+  background: linear-gradient(135deg, var(--green-light) 0%, #ffffff 65%);
+  box-shadow: 0 4px 14px rgba(18,138,99,0.18);
+}
+.to-wrap{
+  background: linear-gradient(135deg, var(--gold-light) 0%, #ffffff 65%);
+  box-shadow: 0 4px 14px rgba(224,165,55,0.22);
+}
+.from-wrap .currency-symbol{ color: var(--green-deep); }
+.to-wrap .currency-symbol{ color: #a8730f; }
+.from-wrap .select-arrow{ color: var(--green); }
+.to-wrap .select-arrow{ color: var(--gold); }
+
+.currency-symbol{
+  font-family: "League Spartan", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.currency-select{
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ink);
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  text-align: left;
+}
+.currency-select:focus{ outline: none; }
+
+.select-arrow{
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  pointer-events: none;
+}
+
+/* ---------- SIGNATURE: overlapping swap button with two stacked chevrons ---------- */
+.swap-btn{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 4px solid var(--green-deep);
+  background: linear-gradient(135deg, var(--gold) 0%, #c98f2a 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  cursor: pointer;
+  z-index: 2;
+  flex-shrink: 0;
+  transition: box-shadow 0.2s ease;
+}
+.swap-btn i{ font-size: 10px; line-height: 1; }
+.swap-btn:hover{ box-shadow: 0 0 0 4px rgba(224,165,55,0.25); }
+
+@keyframes swapBounce {
+  0%   { transform: translate(-50%, -50%) scale(1); }
+  50%  { transform: translate(-50%, -50%) scale(1.18); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+.swap-btn.spin{ animation: swapBounce 0.35s ease; }
+
+/* ---------- AMOUNT INPUT ---------- */
+.amount-div{
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+.amount-div label{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: var(--green-deep);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: "Inter", sans-serif;
+}
+.amount-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.amount-symbol{
+  font-family: "League Spartan", sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--green-deep);
+  flex-shrink: 0;
+}
+.amount-field{
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  font-family: "League Spartan", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.amount-field::placeholder{ color: #c7c2b4; }
+
+/* ---------- CALC BUTTONS ---------- */
+.calc-btn{
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.calc-btn .btn{
+  width: 30%;
+  height: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+.calc-btn #clear{
+  background-color: var(--gold-light);
+}
+.calc-btn #clear p{
+  color: var(--green-deep);
+}
+.calc-btn #clear:hover{
+  background-color: var(--gold);
+}
+.calc-btn #clear:hover p{
+  color: #ffffff;
+}
+.calc-btn #calculate{
+  background-color: var(--green-deep);
+}
+.calc-btn #calculate:hover{
+  background-color: var(--green);
+}
+.calc-btn .btn:hover{
+  transform: scale(1.05);
+}
+.calc-btn .btn:active{
+  transform: scale(0.95);
+}
+
+.price-p-g{
+  width: 100%;
+  min-height: 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--green-deep);
+  font-family: "Inter", sans-serif;
+}
+
+/* ---------- RESULT ---------- */
+.result{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+.result-stack{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.result .price-box{
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-deep) 100%);
+  width: 100%;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+.price-box p{
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+.price-box h2{
+  font-family: "League Spartan", sans-serif;
+  line-height: 1;
+  margin-top: 6px;
+  text-align: center;
+}
+
+/* Exchange rate: supporting info, smaller */
+.price-box.rate-box{
+  height: 84px;
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-deep) 100%);
+}
+.price-box.rate-box h2{
+  font-size: 18px;
+}
+
+/* Converted amount: the main result, so it gets the biggest type on the page */
+.price-box.converted-box{
+  height: 130px;
+  background: linear-gradient(135deg, var(--gold) 0%, #c98f2a 100%);
+}
+.price-box.converted-box h2{
+  font-size: 40px;
+  font-weight: 700;
+}
+
+@keyframes flashPulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.04); box-shadow: 0 0 18px rgba(18,138,99,0.4); }
+  100% { transform: scale(1); box-shadow: none; }
+}
+.result .price-box.flash{
+  animation: flashPulse 0.45s ease-out forwards;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+.amount-div.shake{
+  animation: shake 0.4s ease;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .swap-btn, .price-box.flash, .amount-div.shake{ animation: none !important; transition: none !important; }
+}
+
+/* ---------- SIDEBAR (structurally identical to other pages) ---------- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 280px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--green), var(--green-deep));
+  color: white;
+  box-shadow: 5px 0 20px #00000033;
+  transition: left 0.3s ease;
+  z-index: 200;
+  overflow-y: auto;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar.active { left: 0; }
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #00000080;
+  z-index: 150;
+  display: none;
+}
+.sidebar-overlay.active { display: block; }
+
+.sidebar-header {
+  padding: 12px 20px;
+  text-align: center;
+  display: flex;
+  flex-shrink: 0;
+  border-bottom: 1px solid #ffffff1a;
+  margin-bottom: 10px;
+}
+.sidebar-header .side-head{
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  background-color: #fff;
+  overflow: hidden;
+}
+.side-head img{ width: 100%; }
+.sidebar-header h3 {
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0 15px;
+  margin-top: 30px;
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+}
+.sidebar-menu::-webkit-scrollbar { display: none; }
+.sidebar-item { margin-bottom: 4px; }
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all 0.3s;
+  font-size: 18px;
+  font-weight: 500;
+}
+.sidebar-link:hover,
+.sidebar-link.active { background: #ffffff26; }
+
+.sidebar-footer {
+  position: relative;
+  bottom: auto;
+  flex-shrink: 0;
+  border-top: 1px solid #ffffff26;
+  padding: 12px 8px;
+  background: var(--green-deep);
+  text-align: center;
+}
+.credit-text { font-size: 12px; color: #ffffffcc; }
+.credit-name { font-size: 15px; font-weight: 700; margin: 5px 0 10px; color: #fff; }
+.social-links { display: flex; justify-content: center; gap: 15px; }
+.social-links a { color: white; font-size: 18px; transition: transform 0.3s, color 0.3s; }
+.social-links a:hover { transform: scale(1.2); }
+.credit-reserv { font-size: 12px; color: #ffffffcc; margin-top: 2px; }
+
+.has-dropdown .sidebar-link { justify-content: space-between; }
+.dropdown-arrow { font-size: 13px; transition: transform 0.3s ease; margin-left: auto; }
+.has-dropdown.open .dropdown-arrow { transform: rotate(180deg); }
+
+.dropdown-menu {
+  list-style: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+  opacity: 0;
+  padding-left: 10px;
+}
+.has-dropdown.open .dropdown-menu { max-height: 400px; opacity: 1; }
+
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  color: #ffffffcc;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+  margin-bottom: 2px;
+}
+.dropdown-link:hover,
+.dropdown-link.active { background: #ffffff26; color: #fff; }
+.dropdown-link i { font-size: 13px; width: 16px; text-align: center; }
+
+@media (max-height: 600px) {
+  .sidebar-footer { position: relative; margin-top: 20px; }
+}
+
+/* ---------- WATERMARK ---------- */
+.water-mark{
+  width: 100%;
+  height: 20px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-family: "Inter", sans-serif;
+  font-size: 8px;
+  text-align: center;
+  color: var(--ink);
+}
+.water-mark span{
+  font-family: "League Spartan", sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+}
