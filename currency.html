@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Calc-Currency</title>
+    <link rel="stylesheet" href="./CSS/currency.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&display=swap');
+    </style>
+</head>
+<body>
+    <div class="currency-calc">
+        <nav class="navbar">
+            <div class="navbar-title">Currency Converter</div>
+            <div class="hamburger-btn" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="side-head">
+                    <img src="./assets/ProCalc.logo.png" alt="pro-calc">
+                </div>
+                <h3> Pro Tools</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item has-dropdown open">
+                    <a href="#" class="sidebar-link help" id="allCalcToggle">
+                        <i class="fa-solid fa-calculator"></i>
+                        <span>All Calculator</span>
+                        <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./normal.html" class="dropdown-link"><i class="fa-solid fa-hashtag"></i> Normal
+                                Calculator</a></li>
+                        <li><a href="./grocery.html" class="dropdown-link" data-target="grocery-cal"><i class="fa-solid fa-cart-shopping"></i>
+                                Grocery Calculator</a></li>
+                        <li><a href="./cgpa.html" class="dropdown-link" data-target="cgpa-cal"><i class="fa-solid fa-graduation-cap"></i> CGPA
+                                Calculator</a></li>
+                        <li><a href="#" class="dropdown-link" data-target="age-cal"><i class="fa-solid fa-cake-candles"></i> Age
+                                Calculator</a></li>
+                        <li><a href="./currency.html" class="dropdown-link active" data-target="currency-cal"><i class="fa-solid fa-coins"></i> Currency
+                                Converter</a></li>
+                        <li><a href="#" class="dropdown-link" data-target="unit-cal"><i class="fa-solid fa-ruler"></i> Unit
+                                Converter</a></li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link help">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link help">
+                        <i class="fa-solid fa-star"></i>
+                        <span>Favorite</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link help">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help & Support</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="./about.html" class="sidebar-link help">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <p class="credit-text">Made with ❤️ by</p>
+                <h4 class="credit-name">Soumyaranjan Sahoo</h4>
+
+                <div class="social-links">
+                    <a href="" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <p class="credit-reserv">Maintend By vetex.dev All rights reserved ©2026</p>
+            </div>
+        </div>
+
+        <div class="hero">
+            <div class="convert-card">
+
+                <div class="currency-pair">
+                    <div class="currency-select-wrap from-wrap">
+                        <span class="currency-symbol" id="fromSymbol">₹</span>
+                        <select id="fromCurrency" class="currency-select" aria-label="From currency"></select>
+                        <i class="fa-solid fa-chevron-down select-arrow"></i>
+                    </div>
+
+                    <button class="swap-btn" id="swapBtn" type="button" aria-label="Swap currencies">
+                        <i class="fa-solid fa-right-left"></i>
+                    </button>
+
+                    <div class="currency-select-wrap to-wrap">
+                        <span class="currency-symbol" id="toSymbol">$</span>
+                        <select id="toCurrency" class="currency-select" aria-label="To currency"></select>
+                        <i class="fa-solid fa-chevron-down select-arrow"></i>
+                    </div>
+                </div>
+
+                <div class="amount-div" id="amountDiv">
+                    <label for="amountInput"><i class="fa-solid fa-coins"></i> Amount to Convert</label>
+                    <div class="amount-wrapper">
+                        <span class="amount-symbol" id="amountSymbol">₹</span>
+                        <input type="number" id="amountInput" class="amount-field" placeholder="0.00" min="0" step="0.01" value="1" inputmode="decimal">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="calc-btn">
+            <div class="btn" id="clear">
+                <p>Clear</p>
+            </div>
+            <div class="btn" id="calculate">
+                <p>Convert</p>
+            </div>
+        </div>
+
+        <div class="price-p-g" id="rateNote">Fetching live exchange rate…</div>
+
+        <div class="result">
+            <div class="result-stack">
+                <div class="price-box rate-box" id="rateBox">
+                    <p>Exchange Rate</p>
+                    <h2 id="rateOutput">--</h2>
+                </div>
+                <div class="price-box converted-box" id="convertedBox">
+                    <p>Converted Amount</p>
+                    <h2 id="convertedOutput">0.00</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="water-mark">
+            <p>Created By <span>Soumyaranjan</span> ©2026</p>
+        </div>
+    </div>
+    <script src="./Js/currency.js"></script>
+</body>
+</html>
