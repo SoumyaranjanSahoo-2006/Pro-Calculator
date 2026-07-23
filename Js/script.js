@@ -86,7 +86,7 @@ const pages = {
   "grocery-cal": "grocery.html",
   "cgpa-cal": "cgpa.html",
   "age-cal": "age.html",
-  "currency-cal": "./pages/currency-converter.html",
+  "currency-cal": "currency.html",
   "unit-cal": "./pages/unit-converter.html",
 };
 
