@@ -87,7 +87,7 @@ const pages = {
   "cgpa-cal": "cgpa.html",
   "age-cal": "age.html",
   "currency-cal": "currency.html",
-  "unit-cal": "./pages/unit-converter.html",
+  "unit-cal": "unit.html",
 };
 
 Object.keys(pages).forEach((id) => {
