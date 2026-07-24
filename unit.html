@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Calc-Unit</title>
+    <link rel="stylesheet" href="./CSS/unit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=League+Spartan:wght@100..900&family=Poppins:wght@600;700&display=swap');
+    </style>
+</head>
+<body>
+    <div class="unit-calc">
+        <nav class="navbar">
+            <div class="navbar-title">Unit Converter</div>
+            <div class="hamburger-btn" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="side-head">
+                    <img src="./assets/ProCalc.logo.png" alt="pro-calc">
+                </div>
+                <h3> Pro Tools</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item has-dropdown open">
+                    <a href="#" class="sidebar-link help" id="allCalcToggle">
+                        <i class="fa-solid fa-calculator"></i>
+                        <span>All Calculator</span>
+                        <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="./normal.html" class="dropdown-link"><i class="fa-solid fa-hashtag"></i> Normal
+                                Calculator</a></li>
+                        <li><a href="./grocery.html" class="dropdown-link" data-target="grocery-cal"><i class="fa-solid fa-cart-shopping"></i>
+                                Grocery Calculator</a></li>
+                        <li><a href="./cgpa.html" class="dropdown-link" data-target="cgpa-cal"><i class="fa-solid fa-graduation-cap"></i> CGPA
+                                Calculator</a></li>
+                        <li><a href="#" class="dropdown-link" data-target="age-cal"><i class="fa-solid fa-cake-candles"></i> Age
+                                Calculator</a></li>
+                        <li><a href="./currency.html" class="dropdown-link" data-target="currency-cal"><i class="fa-solid fa-coins"></i> Currency
+                                Converter</a></li>
+                        <li><a href="./unit.html" class="dropdown-link active" data-target="unit-cal"><i class="fa-solid fa-ruler-combined"></i> Unit
+                                Converter</a></li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link help">
+                        <i class="fa-solid fa-gear"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link help">
+                        <i class="fa-solid fa-star"></i>
+                        <span>Favorite</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link help">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Help & Support</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="./about.html" class="sidebar-link help">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <p class="credit-text">Made with ❤️ by</p>
+                <h4 class="credit-name">Soumyaranjan Sahoo</h4>
+
+                <div class="social-links">
+                    <a href="" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <p class="credit-reserv">Maintend By vetex.dev All rights reserved ©2026</p>
+            </div>
+        </div>
+
+        <div class="hero">
+            <div class="convert-card">
+
+                <div class="category-scroll" id="categoryScroll" role="tablist" aria-label="Unit category"></div>
+
+                <div class="unit-pair">
+                    <div class="unit-select-wrap from-wrap" id="fromWrap">
+                        <i class="fa-solid unit-icon" id="fromIcon"></i>
+                        <button type="button" class="unit-trigger" id="fromTrigger" aria-haspopup="listbox" aria-expanded="false">
+                            <span id="fromLabel">Meter</span>
+                        </button>
+                        <i class="fa-solid fa-chevron-down select-arrow"></i>
+                        <ul class="unit-dropdown" id="fromDropdown" role="listbox" aria-label="From unit options"></ul>
+                    </div>
+
+                    <button class="swap-btn" id="swapBtn" type="button" aria-label="Swap units">
+                        <i class="fa-solid fa-chevron-down"></i>
+                        <i class="fa-solid fa-chevron-up"></i>
+                    </button>
+
+                    <div class="unit-select-wrap to-wrap" id="toWrap">
+                        <i class="fa-solid unit-icon" id="toIcon"></i>
+                        <button type="button" class="unit-trigger" id="toTrigger" aria-haspopup="listbox" aria-expanded="false">
+                            <span id="toLabel">Foot</span>
+                        </button>
+                        <i class="fa-solid fa-chevron-down select-arrow"></i>
+                        <ul class="unit-dropdown" id="toDropdown" role="listbox" aria-label="To unit options"></ul>
+                    </div>
+                </div>
+
+                <div class="amount-div" id="amountDiv">
+                    <label for="amountInput"><i class="fa-solid fa-ruler"></i> Value to Convert</label>
+                    <div class="amount-wrapper">
+                        <input type="number" id="amountInput" class="amount-field" placeholder="0" min="0" step="any" value="1" inputmode="decimal">
+                        <span class="amount-unit" id="amountUnit">m</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="calc-btn">
+            <div class="btn" id="clear">
+                <p>Clear</p>
+            </div>
+            <div class="btn" id="calculate">
+                <p>Convert</p>
+            </div>
+        </div>
+
+        <div class="price-p-g" id="rateNote">1 Meter = 3.2808 Foot</div>
+
+        <div class="result">
+            <div class="result-stack">
+                <div class="price-box rate-box" id="rateBox">
+                    <p>Conversion Formula</p>
+                    <h2 id="rateOutput">1 m = 3.2808 ft</h2>
+                </div>
+                <div class="price-box converted-box" id="convertedBox">
+                    <p>Converted Value</p>
+                    <h2 id="convertedOutput">0</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="water-mark">
+            <p>Created By <span>Soumyaranjan</span> ©2026</p>
+        </div>
+    </div>
+    <script src="./Js/unit.js"></script>
+</body>
+</html>
